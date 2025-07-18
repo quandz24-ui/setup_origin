@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      height: 100vh;
+      width: 100vw;
+      background-color: #eaeaea;
+      overflow: hidden;
+      user-select: none;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .phone {
+      width: 330px;
+      height: 700px;
+      border-radius: 50px;
+      border: 2px solid rgb(0, 0, 0);
+      background: linear-gradient(to bottom, rgb(0, 53, 53), rgb(0, 141, 141));
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      transform: scale(1);
+      transition: all 0.6s cubic-bezier(0.23, 0.55, 0.54, 0.97);
+      justify-items: center;
+    }
+    #box0 {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-100%) translateY(0%);
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      text-align: center;
+      transition: all 0.7s ease;
+    }
+    #box1 {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-90%) translateY(-40%);
+      width: calc(330px * 0.7);
+      height: calc(330px * 0.7);
+      border-radius: 50%;
+      border: 40px solid rgba(0, 0, 255, 0.65);
+      text-align: center;
+      z-index: 1;
+      transition: all 0.5s ease-in, transform 0.5s ease,
+        background 0.1s ease-in-out, border-color 0.1s ease-in-out;
+    }
+    #box1::after {
+      content: "";
+      position: absolute;
+      width: 250%;
+      height: 250%;
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 55' fill='rgba(255,255,255,1)'><path d='M5 0 L75 0 L75 10 L5 10 Z M5 20 L75 20 L75 30 L5 30 Z M5 40 L95 40 L95 50 L5 50 Z'/></svg>")
+        no-repeat center;
+      background-size: contain;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      opacity: 0;
+    }
+    #box2 {
+      transform: translateX(170%) translateY(-160%);
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background-color: #f65268;
+      text-align: center;
+      transition: all 0.6s;
+    }
+    #box0.anim {
+      transform: translateX(-50%) translateY(-150%) rotate(360deg);
+    }
+    #box1.anim {
+      transition: all 0.5s ease-in-out, height 0.5s ease, width 0.5s ease,
+        background 0.25s ease-in-out, border 0.25s ease-in-out;
+      transform: translateX(-65%) translateY(-350%);
+      width: 20px;
+      height: 30px;
+      border-radius: 5px;
+      background: rgba(0, 0, 255, 0.65);
+      border: 20px solid rgba(0, 0, 255, 0);
+    }
+    #box1.anim::after {
+      transition: all 0.7s cubic-bezier(0.77, -0.1, 0.79, -0.52);
+      width: 250%;
+      height: 250%;
+      opacity: 1;
+    }
+    #box2.anim {
+      transition: all 0.6s, scale 0.5s cubic-bezier(0.84, -1.12, 0.55, 0.55);
+      transform: translateX(155%) translateY(-50%);
+      width: 40px;
+      height: 45px;
+      border-radius: 5px;
+      scale: 1.2;
+    }
+    #click {
+      position: absolute;
+      padding-left: 10px;
+      width: 210px;
+      height: 60px;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 120%;
+      font-weight: bold;
+      font-family: sans-serif;
+      color: rgba(0, 0, 255, 0.65);
+      transition: all 0.3s;
+      z-index: 23;
+    }
+
+    #click .text {
+      flex: 1;
+      text-align: left;
+    }
+    #click .icon {
+      flex-shrink: 0;
+    }
+
+    #click::after {
+      content: "";
+      position: absolute;
+      border: 5px solid rgba(0, 0, 255, 0.65);
+      border-radius: 40px;
+      width: 80vw;
+      height: 60px;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 260px;
+    }
+    #click:active {
+      transform: translateX(-50%) scale(0.95);
+    }
+    #originos_logo {
+      position: absolute;
+      display: flex;
+      background: url("originos_data/Origin_os_logo.png") no-repeat center
+        center;
+      background-size: contain;
+      height: 80px;
+      width: 250px;
+      align-items: start;
+      left: 50%;
+      transform: translateX(-50%) translateY(100%);
+      transition: 0.3s;
+    }
+    #originos_logo::after {
+      content: "not offical originos";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -20px;
+      font-size: 13px;
+      font-weight: bold;
+      font-family: sans-serif;
+    }
+    .setup_screen {
+      background-color: #eaeaea;
+      width: 100%;
+      height: 100%;
+      transition: all 0.2s;
+    }
+    #top_text {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 190px;
+      font-size: 30px;
+      font-family: sans-serif;
+    }
+    #screen_notes {
+      transition: all 0.2s;
+      color: rgb(32, 32, 32);
+    }
+    #screen_notes.open {
+      transition: all 0.7s cubic-bezier(0.77, -0.1, 0.79, -0.52);
+    }
+    #originos_buttons {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      z-index: 9999;
+    }
+
+    #btn_disagree {
+      color: gray;
+      border: 2px solid gray;
+      padding: 10px;
+      border-radius: 25px;
+      height: 50px;
+      cursor: pointer;
+      width: 45%;
+      font-family: sans-serif;
+      font-weight: bold;
+    }
+
+    #btn_goto {
+      color: rgba(0, 0, 255, 0.65);
+      border: 2px solid rgba(0, 0, 255, 0.65);
+      padding: 10px;
+      border-radius: 25px;
+      height: 50px;
+      cursor: pointer;
+      width: 45%;
+      font-family: sans-serif;
+      font-weight: bold;
+    }
+  </style>
+  <body>
+    <div class="phone">
+      <div class="setup_screen" id="setup_screenid">
+        <div id="originos_logo"></div>
+        <div id="box1"></div>
+        <div id="box0">
+          <div id="box2"></div>
+        </div>
+        <div id="click">
+          <span class="text">Get started with OriginOS</span>
+          <svg
+            class="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -15 65 30"
+            width="40"
+            height="40"
+            fill="rgba(0, 0, 255, 0.65)"
+          >
+            <path d="M 61 0 C 65 3 65 8 60 8 L 0 8 L 0 0 L 43 0 L 43 -15 Z" />
+          </svg>
+        </div>
+
+        <div
+          class="setup_screen"
+          id="screen_notes"
+          style="opacity: 0; touch-action: none; background: none"
+        >
+          <div id="top_text">Notes</div>
+          <div id="top_text" style="font-size: 15px; top: 250px; width: 80%">
+            This interface is a simulation of OriginOS. It is not a real
+            operating system and is not officially released by vivo.
+          </div>
+          <div id="originos_buttons">
+            <button id="btn_disagree">Disagree</button>
+            <button
+              id="btn_goto"
+              onclick="document.getElementById('setup_screenid').style.opacity = 0;"
+            >
+              Go to OriginWEB
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const box2 = document.getElementById("box2");
+    const box1 = document.getElementById("box1");
+    const box0 = document.getElementById("box0");
+
+    const clicke = document.getElementById("click");
+    clicke.addEventListener("click", () => {
+      box0.classList.add("anim");
+      box1.classList.add("anim");
+      box2.classList.add("anim");
+      clicke.style.transition = "all 0.3s";
+      clicke.style.opacity = 0;
+      document.getElementById("originos_logo").style.transition = "all 0.3s";
+      document.getElementById("originos_logo").style.opacity = 0;
+      document.getElementById("screen_notes").style.transition =
+        "all 0.7s cubic-bezier(0.77, -0.1, 0.79, -0.52)";
+      document.getElementById("screen_notes").style.opacity = 1;
+    });
+    document.getElementById("btn_disagree").addEventListener("click", () => {
+      box0.classList.remove("anim");
+      box1.classList.remove("anim");
+      box2.classList.remove("anim");
+      clicke.style.transition =
+        "all 0.7s cubic-bezier(0.77, -0.1, 0.79, -0.52)";
+      clicke.style.opacity = 1;
+      document.getElementById("originos_logo").style.transition =
+        "all 0.7s cubic-bezier(0.77, -0.1, 0.79, -0.52)";
+      document.getElementById("originos_logo").style.opacity = 1;
+      document.getElementById("screen_notes").style.transition = "all 0.3s";
+      document.getElementById("screen_notes").style.opacity = 0;
+    });
+  </script>
+</html>
