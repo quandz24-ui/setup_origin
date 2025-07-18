@@ -7,15 +7,23 @@
   </head>
   <style>
     body {
+      margin: 0;
+      padding: 0;
       height: 100vh;
       width: 100vw;
-      background-color: #eaeaea;
-      overflow: hidden;
-      user-select: none;
       overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
+      background: #353535;
+      user-select: none;
+      margin-bottom: 120px;
+      scale: 0.9;
+      touch-action: none;
+
+      /* Scrollbar cho Firefox */
+      scrollbar-width: thin;
+      scrollbar-color: #bbb transparent;
     }
 
     .phone {
@@ -151,7 +159,7 @@
     #originos_logo {
       position: absolute;
       display: flex;
-      background: url("originos_data/Origin_os_logo.png") no-repeat center
+      background: url("Origin_os_logo.png") no-repeat center
         center;
       background-size: contain;
       height: 80px;
@@ -162,14 +170,16 @@
       transition: 0.3s;
     }
     #originos_logo::after {
-      content: "not offical originos";
+      content: "V1.4.00 not released yet by @sungsamtech";
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      bottom: -20px;
-      font-size: 13px;
+      bottom: -30px;
+      font-size: 14px;
       font-weight: bold;
       font-family: sans-serif;
+      text-align: center;
+      width: 200px;
     }
     .setup_screen {
       background-color: #eaeaea;
@@ -262,12 +272,7 @@
           </div>
           <div id="originos_buttons">
             <button id="btn_disagree">Disagree</button>
-            <button
-              id="btn_goto"
-              onclick="document.getElementById('setup_screenid').style.opacity = 0;"
-            >
-              Go to OriginWEB
-            </button>
+            <button id="btn_goto">Wait more</button>
           </div>
         </div>
       </div>
